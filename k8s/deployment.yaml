@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mvc-login
+  labels:
+    app: mvc-login
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mvc-login
+  template:
+    metadata:
+      labels:
+        app: mvc-login
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/port: "3000"
+    spec:
+      containers:
+      - name: mvc-login
+        image: sha256:39de64acc709d1bcbe00905db66de3ef9b2cdda68533b6801653c998e2a9db90
+        ports:
+        - containerPort: 3000
